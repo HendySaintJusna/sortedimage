@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block title %}
+	Collection
+{% endblock title %}
+
+
+
+{% block content %}
+{% if user.is_authenticated %}
+
+
+
+
+{% for x in data %}
+	<div class="row">
+		<div class="col-lg-8 col-md-10 col-sm-12 col-12">
+			<h5>Album_ {{x.name}}</h5>
+		</div>
+		<div class="col-lg-2 col-md-2 col-sm-12 col-12">
+			<a href="/album/{{x.token}}">Share</a>
+		</div>
+		<div class="col-lg-2 col-md-2 col-sm-12 col-12">
+			<a href="/media/{{x.file}}">Download</a>
+		</div>
+	</div>
+	
+	<hr>
+{% endfor %}
+
+
+
+
+{% else %}
+
+<h1>Sorry! You must be logged in to view this page...</h1>
+
+<a href="login">Login here</a>
+
+{% endif %}
+
+
+
+
+{% endblock content %}

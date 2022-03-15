@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block title %}
+	Upload now
+{% endblock title %}
+
+
+
+
+
+
+
+
+
+{% block content %}
+
+{% if user.is_authenticated %}
+
+
+	<form action="/upload" class="dropzone" id="my-great-dropzone" method=POST>
+
+		{% csrf_token %}
+	  <div class="fallback">
+	    <input name="docfile" type="file" multiple />
+	  </div>
+	</form>
+
+	<a href="/show">Show</a>
+	<a href="media/Albumrmrab.zip">Download the sorted album</a>
+
+
+	{% verbatim %}
+		<div id="app">
+
+			{{ task }}
+			{{ mot }}
+		</div>
+	{% endverbatim %}
+
+
+
+{% else %}
+
+
+
+<h1>Sorry! You must be logged in to view this page...</h1>
+
+<a href="login">Login here</a>
+
+
+
+{% endif %}
+
+
+
+{% endblock content %}
+
+
+
+
+
+

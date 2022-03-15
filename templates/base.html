@@ -1,0 +1,118 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Font awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- custom css & js -->
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <!-- dopzone -->
+<!--     <script src="https://rawgit.com/enyo/dropzone/master/dist/dropzone.js"></script>
+    <link rel="stylesheet" href="https://rawgit.com/enyo/dropzone/master/dist/dropzone.css"> -->
+
+    <script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css" />
+
+    <title>Rating site | {% block title %}{% endblock title %}</title>
+  </head>
+  <body>
+
+
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark justify-content-end">
+        <!-- <a class="navbar-brand" href="#">Home</a> -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse flex-grow-0" id="navbarSupportedContent">
+            <ul class="navbar-nav text-right">
+                {% if user.is_authenticated %}
+                <li class="nav-item active">
+                    <a class="nav-link" href="/home">Upload</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="/collection">Collection</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="/logout">Logout</a>
+                </li>
+                {% else %}
+                <li class="nav-item active">
+                    <a class="nav-link" href="/login">Login</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="/register">Register</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Contact us</a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+
+<!--     <nav class="navbar navbar-light" style="background-color: black;">
+      <a class="navbar-brand" style="color: white;" href="/">Navbar</a>
+
+      {% if user.is_authenticated %}
+      <li class="nav-item">
+          <a style="color:white;" href="logout">
+              Logout
+          </a>
+      </li>
+      <li class="nav-item">
+          <a style="color:white;" href="logout">
+              Images
+          </a>
+      </li>
+      {% else %}
+      <li class="nav-item">
+          <a style="color:white;" href="login">
+              Login
+          </a>
+      </li>
+      {% endif %}
+
+    </nav> -->
+    
+
+    <div class="container mt-3">
+
+        {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+              <strong>{{message}}
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+                
+            {% endfor %}
+        {% endif %}
+
+        {% block content %}
+        {% endblock content %}
+
+    </div>
+
+    <div class="container mt-3">
+        {% block secondblock %}
+        {% endblock secondblock %}
+    </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.12/vue.min.js" integrity="sha512-BKbSR+cfyxLdMAsE0naLReFSLg8/pjbgfxHh/k/kUC82Hy7r6HtR5hLhobaln2gcTvzkyyehrdREdjpsQwy2Jw==" crossorigin="anonymous"></script>
+    <script src="{% static 'main.js' %}" defer></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  </body>
+</html>
