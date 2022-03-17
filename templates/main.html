@@ -16,28 +16,54 @@
 
 {% if user.is_authenticated %}
 
+	
+	
+	{% if count < 201 %}
 
-	<form action="/upload" class="dropzone" id="my-great-dropzone" method=POST>
-
-		{% csrf_token %}
-	  <div class="fallback">
-	    <input name="docfile" type="file" multiple />
-	  </div>
-	</form>
-
-	<a href="/show">Show</a>
-	<a href="media/Albumrmrab.zip">Download the sorted album</a>
-
-
-	{% verbatim %}
-		<div id="app">
-
-			{{ task }}
-			{{ mot }}
+		<div class="alert alert-warning" role="alert" style="margin-top: 60px;margin-bottom: 30px;text-align: center;">
+		  Drag and drop the images you wish to organize. <STRONG>A clear message will warn you once all the images have been analyzed. Be patient ;)</STRONG>
 		</div>
-	{% endverbatim %}
+
+		<form action="/upload" class="dropzone" id="my-great-dropzone" method=POST>
+
+			{% csrf_token %}
+		  <div class="fallback">
+		    <input name="docfile" type="file" multiple />
+		  </div>
+		</form>
 
 
+		<div class="row" style="margin-top: 72px;margin-bottom: 30px;">
+			<div class="col-lg-6 col-md-6 col-sm-12 col-12">
+				<h3>How it works?</h3>
+				<p>We use machine learning to compare images and classify them in folders according to their same level of similarity (85%). The only thing you have to do is to upload your images above and the algorithm will <span style="text-decoration: underline;">automatically</span> give you an album in .zip format. We recommend you to use images with a size lower than 2 MB for an efficient speed.</p>
+			</div>
+			<div class="col-lg-6 col-md-6 col-sm-12 col-12">
+				<h3>Beta</h3>
+				<p>We are currently in Beta and the application may be subject to minor bugs. If you encounter them, please notify us at <strong>jusnabuss@gmail.com</strong>. We want this tool to help you as much as possible so we will constantly improve it.</p>
+			</div>
+		</div>
+
+		
+
+		
+
+		
+
+	{% else %}
+
+		<div class="alert alert-danger" role="alert" style="margin-top: 60px;margin-bottom: 30px;text-align: center;">
+		  <strong>Sorry :/ </strong>.You have reached the maximum storage for your albums. 
+		</div>
+		
+		<div style="text-align: center;">
+			<h1>Why is that?</h1>
+			<p style="font-size:20px;">We are currently in beta and we want to know if users like our tool. We are waiting for feedback on your experience to continue in the right direction. To give us advice, you can contact us at <strong>jusnabuss@gmail.com</strong></p>
+		</div>
+		
+
+
+	{% endif %}
 
 {% else %}
 

@@ -1,1 +1,61 @@
-{% extends "base.html" %}
+{% extends "basewelcome.html" %}
+
+
+
+{% block title%}
+	Sortedimage
+{% endblock title%}
+
+
+
+{% block content %}
+
+<div class="row justify-content-center" style="margin-top: 50px;text-align: center;">
+ 
+  	<div class="col-md-8" style="">
+ 	
+ 		<h1 style="font-size: 50px;font-family: 'Ubuntu', sans-serif;font-weight: 700">Organise automatically your images by similarity</h1>
+ 		<h5 style="color: #616b74;">100% Automatic and <span style="text-decoration: underline;">Free</span></h5>
+ 		<a href="/register" style="font-family: 'Ubuntu', sans-serif;margin-top: 20px;height: 60px;background-color: #32506a;border: 1px solid #32506a;" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Upload my images</a>
+ 	
+	</div>
+
+</div>
+
+
+<div class="row" style="margin-top: 40px;">
+	<div class="col-lg-5 col-md-5 col-sm-12 col-12">
+		<img src="/media/personpics.jpg" style="max-width:100%;max-height:100%;">
+	</div>
+	<div class="col-lg-1 col-md-1 col-sm-12 col-12">
+		
+	</div>
+	<div class="col-lg-5 col-md-5 col-sm-12 col-12">
+		<img src="/media/match.jpg" style="max-width:100%;max-height:100%;">
+	</div>
+</div>
+
+
+
+<div class="row" style="margin-top: 79px;">
+
+	<div class="col-lg-4 col-md-4 col-sm-12 col-12" style="text-align: center;">
+		<img src="/media/question.png" style="height: 58px;margin-bottom: 4px;">
+		<h2 style="font-family: 'Ubuntu', sans-serif;font-weight: 700">How it works</h2>
+		<p style="font-size: 17px;    margin-bottom: 72px;">Sortedimage use machine learning to compare images and classify them in folders according to their same level of similarity. The only thing you have to do is to upload your images and the algorithm will <span style="text-decoration: underline;">automatically</span> give you an album in .zip format.</p>
+	</div>
+	<div class="col-lg-4 col-md-4 col-sm-12 col-12" style="text-align: center;">
+		<img src="/media/dollar.png" style="height: 58px;margin-bottom: 4px;">
+		<h2 style="font-family: 'Ubuntu', sans-serif;font-weight: 700">Free</h2>
+		<p style="font-size: 17px;    margin-bottom: 72px;">The service is totally free. If you want to participate in the development of Sortedimage and help improve it, <a href="https://www.buymeacoffee.com/sortedimage">buy us a coffee</a></p>
+	</div>
+	<div class="col-lg-4 col-md-4 col-sm-12 col-12" style="text-align: center;">
+		<img src="/media/code.png" style="height: 58px;margin-bottom: 4px;">
+		<h2 style="font-family: 'Ubuntu', sans-serif;font-weight: 700">Beta</h2>
+		<p style="font-size: 17px;    margin-bottom: 72px;">Sortedimage is in BETA version and is constantly evolving. Feel free to suggest new features at <strong>jusnabuss@gmail.com</strong>.</p>
+	</div>
+</div>
+
+
+
+{% endblock content %}

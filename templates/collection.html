@@ -10,18 +10,24 @@
 {% if user.is_authenticated %}
 
 
-
+<div class="alert alert-warning" role="alert" style="margin-top: 60px;margin-bottom: 30px;text-align: center;">
+  You have up to <strong>{{remain}} MB</strong> in storage
+</div>
 
 {% for x in data %}
+
 	<div class="row">
-		<div class="col-lg-8 col-md-10 col-sm-12 col-12">
-			<h5>Album_ {{x.name}}</h5>
+		<div class="col-lg-6 col-md-6 col-sm-12 col-12">
+			<h6><img src="/media/zip.png" style="height: 22px;margin-right: 10px;">Album_ {{x.name}}.zip</h6>
+		</div>
+		<div class="col-lg-2 col-md-2 col-sm-12 col-12">
+			<h6>{{x.size}}</h6>
 		</div>
 		<div class="col-lg-2 col-md-2 col-sm-12 col-12">
 			<a href="/album/{{x.token}}">Share</a>
 		</div>
 		<div class="col-lg-2 col-md-2 col-sm-12 col-12">
-			<a href="/media/{{x.file}}">Download</a>
+			<a href="/media/{{x.file}}" style="color:green;">Download</a>
 		</div>
 	</div>
 	

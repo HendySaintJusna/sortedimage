@@ -9,22 +9,33 @@
 
 {% block content %}
 
-<h2>Login</h2>
+<div class="row justify-content-center" style="margin-top: 50px;">
+ 
+  <div class="col-md-6" style="background-color: white;border:1px solid #d1d1d1;padding: 37px 40px;">
 
-<form action="" method=POST>
-	{% csrf_token %}
+    <h2>Login</h2>
 
-  <div class="form-group">
-    <label for="exampleInputEmail1">Username</label>
-    <input type="text" class="form-control" name="username" aria-describedby="emailHelp" placeholder="Enter email">
+    <form action="" method=POST>
+        {% csrf_token %}
+
+        <div class="form-group">
+          <label for="exampleInputEmail1">Username</label>
+          <input type="text" class="form-control" name="username" aria-describedby="emailHelp" placeholder="Enter email">
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPassword1">Password</label>
+          <input type="password" class="form-control" name="password" placeholder="Password">
+        </div>
+
+        <button style="width: 100%;" type="submit" class="btn btn-primary">Submit</button>
+
+    </form>
+
   </div>
-  <div class="form-group">
-    <label for="exampleInputPassword1">Password</label>
-    <input type="password" class="form-control" name="password" placeholder="Password">
-  </div>
 
-  <button type="submit" class="btn btn-primary">Submit</button>
+</div>
 
 
-</form>
+
+
 {% endblock content %}

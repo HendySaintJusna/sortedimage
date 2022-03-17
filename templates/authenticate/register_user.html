@@ -2,7 +2,7 @@
 
 
 {% block title%}
-	Login
+	Register
 {% endblock title%}
 
 
@@ -11,7 +11,7 @@
 
 
 {% if form.errors %}
-
+  
 
   <div class="alert alert-danger alert-dismissible fade show" role="alert">
       There was an error with your form...
@@ -24,17 +24,25 @@
 
 {% endif %}
 
+<div class="row justify-content-center" style="margin-top: 50px;    margin-bottom: 87px;">
+ 
+  <div class="col-md-7" style="background-color: white;border:1px solid #d1d1d1;padding: 37px 40px;">
 
-<h2>Register</h2>
+    <h2>Register</h2>
 
-<form action="{% url 'register_user' %}" method=POST>
-	{% csrf_token %}
+    <form action="{% url 'register_user' %}" method=POST>
+    	{% csrf_token %}
 
-  {{form.as_p}}
+      {{form.as_p}}
 
-  <br><br>
-  <button type="submit" class="btn btn-primary">Submit</button>
+      <br><br>
+      <button style="width: 100%;" type="submit" class="btn btn-primary">Begin!</button>
+
+    </form>
+
+  </div>
+
+</div>
 
 
-</form>
 {% endblock content %}

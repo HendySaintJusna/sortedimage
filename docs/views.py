@@ -69,8 +69,13 @@ def logout_user(request):
 
 # Create your views here.
 def home_view(request, *args, **kwargs):
-	response = render(request, "main.html")
+
+	current_user = request.user
+	userid = current_user.id
+	count = RarImage.objects.filter(idowner=userid).count()
+	response = render(request, "main.html", {'count' : count})
 	return response
+
 
 def welcome_view(request, *args, **kwargs):
 	response = render(request, "welcome.html")
@@ -79,15 +84,31 @@ def welcome_view(request, *args, **kwargs):
 
 def file_upload(request):
 
+	current_user = request.user
+	userid = current_user.id
+	data = RarImage.objects.all().filter(idowner=userid)
+	count = 0
+
+	for x in data:
+		count = count + ((x.sizeinoctet)/1000000)
+
+
 	if request.method == "POST":
 
-		uploaded_file = request.FILES
-		allSorted = Sort.x(request)
-		namezip = Sort.uploadInFolder(allSorted,request)
+		if count < 201:
 
-		# messages.success(request, ("Your image is now sorted by similarity and in a zip file. Check it out in the collection tab!"))
-		return redirect('/collection')
+			uploaded_file = request.FILES
+			allSorted = Sort.x(request)
+			namezip = Sort.uploadInFolder(allSorted,request)
 
+			messages.success(request, ("Your image is now organized by similarity. Check it out in the collection tab!"))
+			return redirect('/collection')
+
+		else:
+
+			print("enough")
+			messages.success(request, ("You have reach the maximum of uploaded Album (5)"))
+			return redirect('/home')
 
 	else:
 
@@ -101,7 +122,14 @@ def collection_view(request):
 	current_user = request.user
 	userid = current_user.id
 	data = RarImage.objects.filter(idowner=userid).order_by('-id')
-	return render(request, "collection.html", {'data':data})
+	allmyrow = RarImage.objects.all().filter(idowner=userid)
+	count = 0
+
+	for x in allmyrow:
+		count = count + ((x.sizeinoctet)/1000000)
+
+	remain = round((200 - count), 2)
+	return render(request, "collection.html", {'data':data, 'remain' : remain})
 
 
 
@@ -109,6 +137,11 @@ def ablumshare_view(request,str):
 	album = RarImage.objects.filter(token=str)
 	# album = get_object_or_404(RarImage, token=str)
 	return render(request, 'album.html', {'data': album})
+
+
+def confid(request):
+	return render(request, 'confidentiality.html')
+
 
 
 def arr_view(request):

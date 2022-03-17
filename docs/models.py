@@ -9,6 +9,8 @@ class RarImage(models.Model):
 	name = models.CharField(max_length=100)
 	token = models.CharField(max_length=100)
 	file = models.CharField(max_length=100)
+	size = models.CharField(max_length=100, default='none')
+	sizeinoctet = models.IntegerField(default=0)
 	date_posted = models.DateTimeField(default=timezone.now)
 
 

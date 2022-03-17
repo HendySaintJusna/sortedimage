@@ -18,7 +18,7 @@ from django.conf.urls.static import static
 from django.conf import settings
 from django.urls import path, include
 
-from docs.views import home_view, file_upload, arr_view,login_user,logout_user,register_user,welcome_view,collection_view,ablumshare_view
+from docs.views import home_view, file_upload, arr_view,login_user,logout_user,register_user,welcome_view,collection_view,ablumshare_view,confid
 
 
 urlpatterns = [
@@ -28,9 +28,10 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('home', home_view),
     path('', welcome_view),
-    path('upload/', file_upload),
+    path('upload/', file_upload, name="upload"),
     path('show/', arr_view),
-    path('collection', collection_view),
+    path('collection', collection_view, name="collection"),
+    path('confidentiality', confid,),
     path('album/<str:str>', ablumshare_view),
     path('members', include("django.contrib.auth.urls")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
