@@ -18,20 +18,22 @@ from django.conf.urls.static import static
 from django.conf import settings
 from django.urls import path, include
 
-from docs.views import home_view, file_upload, arr_view,login_user,logout_user,register_user,welcome_view,collection_view,ablumshare_view,confid
+from docs.views import home_view, file_upload, arr_view,login_user,logout_user,register_user,welcome_view,collection_view,ablumshare_view,confid,file_upload_guest,ablumshare_viewguest
 
 
 urlpatterns = [
-    path('login', login_user, name="login"),
+    # path('login', login_user, name="login"),
     path('logout', logout_user, name="logout"),
-    path('register', register_user, name="register_user"),
+    # path('register', register_user, name="register_user"),
     path('admin/', admin.site.urls),
     path('home', home_view),
     path('', welcome_view),
     path('upload/', file_upload, name="upload"),
+    path('guestupload/', file_upload_guest, name="upload_guest"),
     path('show/', arr_view),
     path('collection', collection_view, name="collection"),
     path('confidentiality', confid,),
     path('album/<str:str>', ablumshare_view),
+    path('guestalbum/', ablumshare_viewguest),
     path('members', include("django.contrib.auth.urls")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -9,6 +9,7 @@ from django.shortcuts import redirect
 from .forms import RegisterUserForm
 from docs.models import RarImage 
 from .funct import Sort
+import requests
 import os.path
 import json
 import string
@@ -47,7 +48,8 @@ def register_user(request):
 			password = form.cleaned_data['password1']
 			user = authenticate(username=username, password=password)
 			login(request, user)
-			messages.success(request, ("Registration successful!"))
+
+			# messages.success(request, ("Registration successful!"))
 			return redirect('/home')
 
 	else:	
@@ -63,7 +65,7 @@ def register_user(request):
 
 def logout_user(request):
 	logout(request)
-	messages.success(request, ("You were logged out!"))
+	# messages.success(request, ("You were logged out!"))
 	return redirect('/')
 
 
@@ -73,13 +75,56 @@ def home_view(request, *args, **kwargs):
 	current_user = request.user
 	userid = current_user.id
 	count = RarImage.objects.filter(idowner=userid).count()
-	response = render(request, "main.html", {'count' : count})
+	
+	response = render(request, "main.html", {'count' : count})	
 	return response
+
+
 
 
 def welcome_view(request, *args, **kwargs):
-	response = render(request, "welcome.html")
-	return response
+
+	if request.user.is_authenticated:
+
+		return redirect('/home')
+
+	else:
+
+		if request.COOKIES.get('yesguest') == None :
+
+			rand = ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(20))
+			guest_name = 'user' + rand
+
+			response = render(request, "welcome.html")
+
+			response.set_cookie('yesguest', guest_name,  path='/')
+			
+			return response
+
+		else:
+			response = render(request, "welcome.html")
+			return response
+	
+
+
+
+def file_upload_guest(request):
+
+
+	if request.method == "POST":
+
+		guest_number = request.COOKIES.get('yesguest')
+		uploaded_file = request.FILES
+		allSorted = Sort.x(request)
+		namezip = Sort.uploadInFolderGuest(allSorted,request,guest_number)
+
+		return redirect('/collection')
+
+	else:
+
+		return render(request, "welcome.html")
+
+
 
 
 def file_upload(request):
@@ -101,13 +146,12 @@ def file_upload(request):
 			allSorted = Sort.x(request)
 			namezip = Sort.uploadInFolder(allSorted,request)
 
-			messages.success(request, ("Your image is now organized by similarity. Check it out in the collection tab!"))
+			# messages.success(request, ("Your image is now organized by similarity. Check it out in the collection tab!"))
 			return redirect('/collection')
 
 		else:
 
-			print("enough")
-			messages.success(request, ("You have reach the maximum of uploaded Album (5)"))
+			# messages.success(request, ("You have reach the maximum of uploaded Album (5)"))
 			return redirect('/home')
 
 	else:
@@ -137,6 +181,12 @@ def ablumshare_view(request,str):
 	album = RarImage.objects.filter(token=str)
 	# album = get_object_or_404(RarImage, token=str)
 	return render(request, 'album.html', {'data': album})
+
+def ablumshare_viewguest(request):
+	guest = request.COOKIES.get('yesguest')
+	album = RarImage.objects.filter(guest=guest).last()
+	# album = get_object_or_404(RarImage, token=str)
+	return render(request, 'guestalbum.html', {'data': album})
 
 
 def confid(request):

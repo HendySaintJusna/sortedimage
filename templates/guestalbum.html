@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+
+{% block title%}
+	Album
+{% endblock title%}
+
+
+
+{% block content %}
+
+
+<div class="alert alert-warning" role="alert" style="margin-top: 60px;margin-bottom: 30px;text-align: center;">
+  Your image is now organised by similarity .<strong>This is your latest upload.</strong>
+</div>
+
+
+
+<div style="text-align: center;">
+	
+	<img src="/media/zip.png" style="height: 140px;margin-top:55px;">
+
+	<div class="row" style="margin: 15px 0px;">
+		<div class="col-lg-12 col-md-12 col-sm-12 col-12">
+			<h1>Album_ {{data.name}}</h1>
+			<h4>{{data.size}}</h4>
+		</div>
+	</div>
+
+	<div class="row"> 
+		<div class="col-lg-12 col-md-12 col-sm-12 col-12">
+			<p><strong>Share :</strong> https://www.sortedimage.com/{{data.token}} </p>
+		</div>
+	</div>
+
+	<div class="row"> 
+		<div class="col-lg-12 col-md-12 col-sm-12 col-12">
+			<a href="/media/{{data.file}}" style="font-size: 28px;">Download the file</a>
+		</div>
+	</div>
+
+</div>
+
+
+
+
+
+
+
+{% endblock content %}

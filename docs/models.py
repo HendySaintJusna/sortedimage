@@ -12,6 +12,6 @@ class RarImage(models.Model):
 	size = models.CharField(max_length=100, default='none')
 	sizeinoctet = models.IntegerField(default=0)
 	date_posted = models.DateTimeField(default=timezone.now)
-
+	guest = models.CharField(max_length=100, default='none')
 
 

@@ -198,3 +198,68 @@ class Sort():
 
 
 
+
+	@classmethod
+	def uploadInFolderGuest(cls,arraySorted,request,guest_number):
+		
+		arr = arraySorted
+		count = 0
+
+		letters = string.ascii_lowercase
+		main_folder = ''.join(random.choice(letters) for i in range(5))
+
+
+		while count != len(arr):
+			
+			arr = arraySorted
+
+			letters = string.ascii_lowercase
+			rand = 'category_' + str(count)
+			
+
+			namezip = 'Album_' + main_folder
+
+
+			parent_dir = main_folder + '/' + rand
+			 
+			for img in arr[count]:
+
+				name = img.name
+
+				path = os.path.join(parent_dir, name)
+
+				fs = FileSystemStorage()
+				fs.save(path,img)
+	
+
+			count += 1
+
+		current_user = request.user
+		myid = 0
+		for_database_token = namezip + '.zip'
+		
+
+		# change directory
+		os.chdir("C:/Users/Hendy/Desktop/imgsort/media")
+		shutil.make_archive(namezip,'zip',main_folder)
+
+		sizeko = (os.path.getsize(for_database_token))/1000
+
+		if sizeko <= 999:
+			sizeko = str(round((sizeko/1000), 2)) + ' MB'
+		elif sizeko >= 1000 and sizeko <= 999999:
+			convertmb = sizeko/1000
+			sizeko = str(round(convertmb, 2)) + ' MB'
+		elif sizeko >= 1000000 and sizeko <= 1000000000:
+			convertgb = sizeko/1000000
+			sizeko = str(round(convertgb, 2)) + ' GB'
+
+
+
+		myData = RarImage(idowner=myid,name=main_folder, token=main_folder, file=for_database_token, size=sizeko, sizeinoctet=os.path.getsize(for_database_token), guest=guest_number)
+		myData.save()
+
+
+		return namezip
+
+

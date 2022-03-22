@@ -20,8 +20,13 @@
 	
 	{% if count < 201 %}
 
-		<div class="alert alert-warning" role="alert" style="margin-top: 60px;margin-bottom: 30px;text-align: center;">
+		<!-- <div class="alert alert-warning" role="alert" style="margin-top: 60px;margin-bottom: 30px;text-align: center;">
 		  Drag and drop the images you wish to organize. <STRONG>A clear message will warn you once all the images have been analyzed. Be patient ;)</STRONG>
+		</div> -->
+
+		<div class="alert alert-primary" role="alert">
+		  <h3 class="alert-heading">Read Me First!</h3>
+		  Drag and drop <span style="text-decoration:underline;">all at once</span> the images you wish to organize. <STRONG>A clear message will warn you once all the images have been analyzed. Be patient ;)</STRONG>
 		</div>
 
 		<form action="/upload" class="dropzone" id="my-great-dropzone" method=POST>
