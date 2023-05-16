@@ -27,7 +27,7 @@ class Sort():
 
 
 
-	# Sort image
+	# Sort image by similarity
 	@classmethod
 	def x(cls,arrfile):
 
@@ -104,7 +104,7 @@ class Sort():
 	
 
 
-	#percentage similar image
+	#percentage similarity calculator
 	@classmethod
 	def checkSim(cls,decoy,target):
 
@@ -115,10 +115,7 @@ class Sort():
 
 	
 		percentage = imgcompare.image_diff_percent(i1, i2)
-		# print(percentage)
-		# m = SequenceMatcher(None, decoy, target)
-		# percentage = m.ratio()
-		# print(percentage)
+
 
 		return percentage
 
@@ -132,6 +129,7 @@ class Sort():
 		return socket.gethostbyname(socket.gethostname())
 
 
+	#Uploal all images in folders and zip it
 	@classmethod
 	def uploadInFolder(cls,arraySorted,request):
 
@@ -198,7 +196,7 @@ class Sort():
 
 
 
-
+	#Uploal all images in folders and zip it
 	@classmethod
 	def uploadInFolderGuest(cls,arraySorted,request,guest_number):
 		
