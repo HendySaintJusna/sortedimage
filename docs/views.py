@@ -17,7 +17,7 @@ import random
 
 
 
-
+#Login
 def login_user(request):
 	
 	if request.method == "POST":
@@ -37,7 +37,7 @@ def login_user(request):
 	else:
 		return render(request, 'authenticate/login.html', {})
 
-
+#Register
 def register_user(request):
 
 	if request.method == "POST":
@@ -62,14 +62,14 @@ def register_user(request):
 
 
 
-
+#Sign out
 def logout_user(request):
 	logout(request)
 	# messages.success(request, ("You were logged out!"))
 	return redirect('/')
 
 
-# Create your views here.
+#Home sign in page
 def home_view(request, *args, **kwargs):
 
 	current_user = request.user
@@ -81,7 +81,7 @@ def home_view(request, *args, **kwargs):
 
 
 
-
+#Welcome page
 def welcome_view(request, *args, **kwargs):
 
 	if request.user.is_authenticated:
@@ -107,7 +107,7 @@ def welcome_view(request, *args, **kwargs):
 	
 
 
-
+#Uploading images
 def file_upload_guest(request):
 
 
@@ -126,7 +126,7 @@ def file_upload_guest(request):
 
 
 
-
+#Uploading images
 def file_upload(request):
 
 	current_user = request.user
@@ -160,7 +160,7 @@ def file_upload(request):
 
 
 	
-
+#Display user sorted images collection
 def collection_view(request):
 
 	current_user = request.user
@@ -176,12 +176,13 @@ def collection_view(request):
 	return render(request, "collection.html", {'data':data, 'remain' : remain})
 
 
-
+#Display a choisen sorted album
 def ablumshare_view(request,str):
 	album = RarImage.objects.filter(token=str)
 	# album = get_object_or_404(RarImage, token=str)
 	return render(request, 'album.html', {'data': album})
 
+#Display a choisen sorted album
 def ablumshare_viewguest(request):
 	guest = request.COOKIES.get('yesguest')
 	album = RarImage.objects.filter(guest=guest).last()
@@ -191,16 +192,3 @@ def ablumshare_viewguest(request):
 
 def confid(request):
 	return render(request, 'confidentiality.html')
-
-
-
-def arr_view(request):
-	return render(request, 'result.html', {'img': 'Mchien'})
-
-
-
-
-
-
-		
-
