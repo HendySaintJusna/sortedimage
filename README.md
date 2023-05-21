@@ -3,6 +3,7 @@
 <h1>What I learned</h1>
 <ul>
   <li>Images & files manipulation</li>
+  <li>Download and compress files</li>
   <li>Python & Django</li>
   <li>Vue.js/Javascript</li>
   <li>HTML/CSS/Bootsrap</li>
