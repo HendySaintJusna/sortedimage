@@ -4,7 +4,6 @@
 <ul>
   <li>Images & files manipulation</li>
   <li>Python & Django</li>
-  <li>Use of Python libraries</li>
   <li>Vue.js/Javascript</li>
   <li>HTML/CSS/Bootsrap</li>
 </ul>
